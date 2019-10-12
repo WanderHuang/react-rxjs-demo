@@ -1,0 +1,21 @@
+.rx-block {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+}
+
+.rx-block:hover {
+  cursor: pointer;
+}
+
+.red {
+  background: red;
+}
+
+.blue {
+  background: blue;
+}
+
+.green {
+  background: green;
+}
