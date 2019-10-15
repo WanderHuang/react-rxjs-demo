@@ -10,6 +10,8 @@ import { Layout, Menu } from 'antd';
 import AsyncDemo from './components/AsyncDemo';
 import DragDemo from './components/DragDemo';
 import CommunicateDemo from './components/CommunicateDemo';
+import HocStreamDemo from './components/HocStreamDemo';
+
 const { Header, Sider } = Layout;
 
 class App extends React.Component {
@@ -30,6 +32,9 @@ class App extends React.Component {
                 <Menu.Item key="3">
                   <Link to="/example3">通信示例</Link>
                 </Menu.Item>
+                <Menu.Item key="4">
+                  <Link to="/example4">高阶流示例</Link>
+                </Menu.Item>
               </Menu>
             </Sider>
             <Layout>
@@ -37,6 +42,7 @@ class App extends React.Component {
                 <Route path="/example1" component={AsyncDemo}></Route>
                 <Route path="/example2" component={DragDemo}></Route>
                 <Route path="/example3" component={CommunicateDemo}></Route>
+                <Route path="/example4" component={HocStreamDemo}></Route>
               </Switch>
             </Layout>
           </Layout>

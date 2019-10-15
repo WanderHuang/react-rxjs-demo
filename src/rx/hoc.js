@@ -96,7 +96,7 @@ export const withStream = (mapStateToProps = () => {}, mapActionToProps = () => 
         const rxActions = mapActionToProps(this.state, this.stream$);
         const {forwardedRef, ...props} = this.props;
         return (
-          <WraappedComponent ref={forwardedRef} {...props} {...this.state} {...rxActions} />
+          <WraappedComponent ref={forwardedRef} {...props} {...this.state} {...rxActions} stream$={this.stream$}/>
         );
       }
     };
