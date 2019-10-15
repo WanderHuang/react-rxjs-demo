@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, message } from 'antd';
 
 import { withStream } from '../../rx/hoc';
-import { tap, pluck, filter, map } from 'rxjs/operators';
+import { tap, pluck, filter, take } from 'rxjs/operators';
 import { interval } from 'rxjs';
 
 /**
@@ -25,14 +25,18 @@ class ButtonStream extends Component {
 
   
   render () {
-    const { buttonClicked } = this.props;
+    const { buttonClicked, ob1, ob2 } = this.props;
     return (
-      <Button onClick={buttonClicked}>点我</Button>
+      <Button onClick={buttonClicked}>{ob1}点我{ob2}</Button>
     );
   }
 }
 
-const mapStateToProps = () => ({ news: 0 });
+// 很酷
+// 把流映射到props上，实现`响应式`的属性
+const observable1$ = interval(5000).pipe(take(5));
+const observable2$ = interval(1000).pipe(take(20));
+const mapStateToProps = () => ({ news: 0, ob1: observable1$, ob2: observable2$ });
 const mapActionToProps = (state, stream$) => {
   return {
     buttonClicked (e) {
@@ -40,7 +44,5 @@ const mapActionToProps = (state, stream$) => {
     }
   }
 }
-const observable1$ = interval(1000);
-const observable2$ = interval(1000).pipe(map(value => ((value * Math.random()) | 0)));
 
 export default withStream(mapStateToProps, mapActionToProps)(ButtonStream);
