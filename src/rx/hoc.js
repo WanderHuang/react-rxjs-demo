@@ -42,8 +42,8 @@ const isType = (obj, type) => Object.prototype.toString.call(obj, `[object ${typ
  *  
  *  // 很方便的调用方式
  *  export default withStream(mapStateToProps, mapActionsToProps)(Calculator);
- * @param {*} mapStateToProps 
- * @param {*} mapActionToProps 
+ * @param {Function} mapStateToProps 把状态量映射到props，纳入流管理
+ * @param {Function} mapActionToProps 把方法映射到props，获得流能力
  */
 export const withStream = (mapStateToProps = () => {}, mapActionToProps = () => {}) => {
   return (WraappedComponent) => {
@@ -55,7 +55,7 @@ export const withStream = (mapStateToProps = () => {}, mapActionToProps = () => 
         super(props);
 
         // 初始化
-        const initialValue = mapStateToProps({});
+        const initialValue = mapStateToProps({}) || {};
         // 每个`流`对外提供一个`BehaviorSubject`
         this.stream$ = new BehaviorSubject(initialValue);
         this.state = {

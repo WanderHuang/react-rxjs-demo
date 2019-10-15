@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Layout } from 'antd';
-import ButtomStream from './streams/ButtomStream';
+import ButtonStream from './streams/ButtonStream';
 
 const { Content } = Layout;
 
@@ -11,7 +11,7 @@ class HocStreamDemo extends Component {
       <Fragment>
         <p style={{color: '#aeaeae'}}>复杂交互示例</p>
         <Content>
-          <ButtomStream />
+          <ButtonStream />
         </Content>
       </Fragment>
     );

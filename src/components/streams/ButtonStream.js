@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Button, message } from 'antd';
 
 import { withStream } from '../../rx/hoc';
-import { tap, pluck, filter } from 'rxjs/operators';
+import { tap, pluck, filter, map } from 'rxjs/operators';
+import { interval } from 'rxjs';
 
 /**
  * 单个组件内状态循环
@@ -39,5 +40,7 @@ const mapActionToProps = (state, stream$) => {
     }
   }
 }
+const observable1$ = interval(1000);
+const observable2$ = interval(1000).pipe(map(value => ((value * Math.random()) | 0)));
 
 export default withStream(mapStateToProps, mapActionToProps)(ButtonStream);
